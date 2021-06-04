@@ -4,14 +4,14 @@
 # email: lizd@mobile.ee.titech.ac.jp
 
 # Mv2 config
-Mv2_IP="x.0.0.x"
-Mv2_USERNAME="********"
-Mv2_PWD="********"
+Mv2_IP="x.x.x.x"
+Mv2_USERNAME="****"
+Mv2_PWD="****"
 
 # OBU config
-IP="x.0.0.x"
-USERNAME="*********"
-PWD="************"
+IP="x.x.x.x"
+USERNAME="****"
+PWD="****"
 
 # Flag definition
 activate_flag=1
