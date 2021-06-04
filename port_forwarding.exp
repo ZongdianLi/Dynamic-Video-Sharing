@@ -1,0 +1,34 @@
+#!/usr/bin/expect -f
+log_user 0
+	
+set RSUIP [lindex $argv 0]
+set Mv2_IP [lindex $argv 1]
+set Mv2_USERNAME [lindex $argv 2]
+set Mv2_PWD [lindex $argv 3]
+set IP [lindex $argv 4]
+set USERNAME [lindex $argv 5]
+set PWD [lindex $argv 6]
+
+set timeout -1
+spawn ssh ${Mv2_USERNAME}@${Mv2_IP}
+expect {
+    "yes" {
+        send "yes\n"
+        expect "*password:" { send "${Mv2_PWD}\n" }
+    }
+    "*password:" { send "${Mv2_PWD}\n" }
+    timeout  {   send_error "User 'root' login timeout.\n";  exit 1;  }
+}
+
+expect "*~"
+send "ssh -L 1234:${RSUIP}:1234 ${USERNAME}@${IP}\r"
+expect {
+    "yes" {
+        send "yes\n"
+        expect "*password:" { send "${PWD}\n" }
+    }
+    "*password:" { send "${PWD}\n" }
+    timeout  {   send_error "User 'root' login timeout.\n";  exit 1;  }
+}
+
+interact

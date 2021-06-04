@@ -1,0 +1,26 @@
+#!/usr/bin/expect -f
+log_user 0
+	
+set Mv2_IP [lindex $argv 0]
+set Mv2_USERNAME [lindex $argv 1]
+set Mv2_PWD [lindex $argv 2]
+
+set timeout -1
+spawn ssh ${Mv2_USERNAME}@${Mv2_IP}
+expect {
+    "yes" {
+        send "yes\n"
+        expect "*password:" { send "${Mv2_PWD}\n" }
+    }
+    "*password:" { send "${Mv2_PWD}\n" }
+    timeout  {   send_error "User 'root' login timeout.\n";  exit 1;  }
+}
+
+expect "*~"
+send "export DISPLAY=:1\r"
+expect "*~"
+send "vlc rtsp://localhost:1234/test --network-caching=200\r"
+expect "*~"
+send "exit\r"
+
+interact
