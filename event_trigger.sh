@@ -4,14 +4,14 @@
 # email: lizd@mobile.ee.titech.ac.jp
 
 # Mv2 config
-Mv2_IP="10.0.0.5"
-Mv2_USERNAME="autoware"
-Mv2_PWD="autoware"
+Mv2_IP="x.0.0.x"
+Mv2_USERNAME="********"
+Mv2_PWD="********"
 
 # OBU config
-IP="10.0.0.6"
-USERNAME="panasonic"
-PWD="Tit_ITS@2021"
+IP="x.0.0.x"
+USERNAME="*********"
+PWD="************"
 
 # Flag definition
 activate_flag=1
