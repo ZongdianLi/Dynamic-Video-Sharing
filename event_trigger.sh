@@ -20,7 +20,7 @@ status=0
 
 while true
 do
-	ip=`ifconfig wlp2s0|grep inet|grep -v inet6|awk '{print $2}'|tr -d "addr:"`
+	ip=`ifconfig wigig0|grep inet|grep -v inet6|awk '{print $2}'|tr -d "addr:"`
 	if [ $ip ] && [ $status -eq $deactivate_flag ]
 	then 
 		subnet=`echo ${ip:0:9}`
