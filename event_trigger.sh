@@ -23,13 +23,12 @@ do
 	ip=`ifconfig wigig0|grep inet|grep -v inet6|awk '{print $2}'|tr -d "addr:"`
 	if [ $ip ] && [ $status -eq $deactivate_flag ]
 	then 
-		subnet=`echo ${ip:0:9}`
+		subnet=`echo ${ip:0:10}`
         rsuip="$subnet.1"
 		echo "Connect to RSU@$rsuip"
 		echo "Start video streaming......" 
 		#vlc &
-		/usr/bin/expect -f port_forwarding.exp ${rsuip} ${Mv2_IP} ${Mv2_USERNAME} ${Mv2_PWD} ${IP} ${USERNAME} ${PWD} > /dev/null &
-		/usr/bin/expect -f video_viewer.exp ${Mv2_IP} ${Mv2_USERNAME} ${Mv2_PWD} > /dev/null &
+		/usr/bin/expect -f video_viewer.exp ${rsuip} ${Mv2_IP} ${Mv2_USERNAME} ${Mv2_PWD} ${IP} ${USERNAME} ${PWD} > /dev/null &
 		#echo "Debug......"
 		status=1
 	else 
