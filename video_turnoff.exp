@@ -17,8 +17,10 @@ expect {
 }
 
 expect "*~"
-send "ps -x | grep "vlc rtsp://localhost:1234/test" | grep -v grep | awk '{print $1}' | xargs kill -9\r"
+send "ps -x | grep 'vlc rtsp://localhost:1234/test' | grep -v grep | awk '{print \$1}' | xargs kill -9\r"
 expect "*~"
-send "ps -x | grep "ssh -L" | grep -v grep | awk '{print $1}' | xargs kill -9\r"
+send "ps -x | grep 'ssh -L' | grep -v grep | awk '{print \$1}' | xargs kill -9\r"
+expect "*~"
+send "exit\r"
 
 expect eof
